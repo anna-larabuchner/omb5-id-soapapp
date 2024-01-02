@@ -49,7 +49,6 @@ void setup() {
 
 
   // BLE Keyboard Code
-  Serial.begin(115200);
   Serial.println("Starting BLE work!");
   bleKeyboard.begin();
 }
@@ -142,7 +141,7 @@ void loop() {
 
     delay(1000);
   }
-  
+
   Serial.println("Waiting 5 seconds...");
   delay(5000);
 
