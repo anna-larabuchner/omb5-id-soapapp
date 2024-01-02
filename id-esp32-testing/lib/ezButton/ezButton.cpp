@@ -97,12 +97,12 @@ void ezButton::loop(void) {
 	// since the last press to ignore any noise:
 
 	// If the switch/button changed, due to noise or pressing:
-	if (currentState != lastFlickerableState) {
+	/* if (currentState != lastFlickerableState) {
 		// reset the debouncing timer
 		lastDebounceTime = currentTime;
 		// save the the last flickerable state
 		lastFlickerableState = currentState;
-	}
+	} */
 
 	if ((currentTime - lastDebounceTime) >= debounceTime) {
 		// whatever the reading is at, it's been there for longer than the debounce
