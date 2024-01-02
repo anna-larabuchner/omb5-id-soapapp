@@ -2,6 +2,8 @@
 
 #include <ezButton.h>
 
+#include <BleKeyboard.h>
+
 /*
  * This ESP32 code is created by esp32io.com
  *
@@ -33,6 +35,8 @@ int command = COMMAND_NO;
 
 ezButton button(17); // create ezButton object that attach to pin G17;
 
+BleKeyboard bleKeyboard;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -41,11 +45,18 @@ void setup() {
   pinMode(LED, OUTPUT);
 
   // JOYSTICK Code
-  button.setDebounceTime(50); // set debounce time to 50 milliseconds
+  // button.setDebounceTime(50); // set debounce time to 50 milliseconds
+
+
+  // BLE Keyboard Code
+  Serial.begin(115200);
+  Serial.println("Starting BLE work!");
+  bleKeyboard.begin();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+
 
   // LED Code
   digitalWrite(LED, HIGH);
@@ -58,12 +69,12 @@ void loop() {
 
   // JOYSTICK Code
 
-  button.loop(); // MUST call the loop() function first
+/*   button.loop(); // MUST call the loop() function first
 
   /* int btnState = button.getState();
   Serial.println(btnState); */
 
-  if(button.isPressed())
+/*   if(button.isPressed())
     Serial.println("The button is pressed");
 
   if(button.isReleased())
@@ -110,6 +121,29 @@ void loop() {
   if (command & COMMAND_DOWN) {
     Serial.println("COMMAND DOWN");
     // TODO: add your task here
+  } */
+
+
+
+  // BLE Keyboard Code
+  if(bleKeyboard.isConnected()) {
+    Serial.println("Sending 'Hello world'...");
+    bleKeyboard.print("Hello world");
+
+    delay(1000);
+
+    Serial.println("Sending Enter key...");
+    bleKeyboard.write(KEY_RETURN);
+
+    delay(1000);
+
+    Serial.println("Sending Play/Pause media key...");
+    bleKeyboard.write(KEY_MEDIA_PLAY_PAUSE);
+
+    delay(1000);
   }
+  
+  Serial.println("Waiting 5 seconds...");
+  delay(5000);
 
 }
