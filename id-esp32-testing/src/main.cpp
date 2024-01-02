@@ -15,7 +15,7 @@
 
 #define LED 2
 
-#define VRX_PIN  36 // ESP32 pin GPIO36 (ADC0) connected to VRX pin
+/* #define VRX_PIN  36 // ESP32 pin GPIO36 (ADC0) connected to VRX pin
 #define VRY_PIN  39 // ESP32 pin GPIO39 (ADC0) connected to VRY pin
 
 #define LEFT_THRESHOLD  1000
@@ -33,7 +33,7 @@ int valueX = 0 ; // to store the X-axis value
 int valueY = 0 ; // to store the Y-axis value
 int command = COMMAND_NO;
 
-ezButton button(17); // create ezButton object that attach to pin G17;
+ezButton button(17); // create ezButton object that attach to pin G17; */
 
 BleKeyboard bleKeyboard;
 
