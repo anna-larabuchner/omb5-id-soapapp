@@ -58,7 +58,6 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-
   // LED Code
   digitalWrite(LED, HIGH);
   // Serial.println("LED is on");
@@ -67,11 +66,11 @@ void loop() {
   // Serial.println("LED is off");
   // delay(1000);
 
-
+  Serial.println(bleKeyboard.isConnected());
 
   // JOYSTICK Code
   if(bleKeyboard.isConnected()) {
-
+    bleKeyboard.print("---------- In if");
     button.loop(); // MUST call the loop() function first
 
     /* Serial.println("Sending 'Hello world'...");
