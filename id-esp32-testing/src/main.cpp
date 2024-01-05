@@ -67,11 +67,11 @@ void loop() {
   // Serial.println("LED is off");
   delay(1000);
 
-  /* Serial.println(bleKeyboard.isConnected());
+  Serial.println(bleKeyboard.isConnected());
   bleKeyboard.print("Hello this is test");
 
   // JOYSTICK Code
-  if(bleKeyboard.isConnected()) {
+  /*if(bleKeyboard.isConnected()) {
     bleKeyboard.print("---------- In if");
     button.loop(); // MUST call the loop() function first
 
