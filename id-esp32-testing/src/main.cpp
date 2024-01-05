@@ -57,16 +57,18 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  Serial.println("In LOOP ---------------------");
 
   // LED Code
   digitalWrite(LED, HIGH);
   // Serial.println("LED is on");
-  // delay(1000);
+  delay(1000);
   digitalWrite(LED, LOW);
   // Serial.println("LED is off");
-  // delay(1000);
+  delay(1000);
 
-  Serial.println(bleKeyboard.isConnected());
+  /* Serial.println(bleKeyboard.isConnected());
+  bleKeyboard.print("Hello this is test");
 
   // JOYSTICK Code
   if(bleKeyboard.isConnected()) {
@@ -82,7 +84,7 @@ void loop() {
     /* int btnState = button.getState();
     Serial.println(btnState); */
 
-    if(button.isPressed())
+    /* if(button.isPressed())
       Serial.println("Sending Enter key...");
       bleKeyboard.write(KEY_RETURN);
       bleKeyboard.print("KEY_RETURN");
@@ -140,6 +142,6 @@ void loop() {
       bleKeyboard.write(KEY_DOWN_ARROW);
       bleKeyboard.print("KEY_DOWN_ARROW");
     }
-  }
+  } */
 
 }
