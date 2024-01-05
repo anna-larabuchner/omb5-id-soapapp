@@ -71,7 +71,7 @@ void loop() {
   bleKeyboard.print("Hello this is test");
 
   // JOYSTICK Code
-  /*if(bleKeyboard.isConnected()) {
+  if(bleKeyboard.isConnected()) {
     bleKeyboard.print("---------- In if");
     button.loop(); // MUST call the loop() function first
 
@@ -84,10 +84,11 @@ void loop() {
     /* int btnState = button.getState();
     Serial.println(btnState); */
 
-    /* if(button.isPressed())
-      Serial.println("Sending Enter key...");
-      bleKeyboard.write(KEY_RETURN);
-      bleKeyboard.print("KEY_RETURN");
+    if(button.isPressed()) {
+        Serial.println("Sending Enter key...");
+        bleKeyboard.write(KEY_RETURN);
+        bleKeyboard.print("KEY_RETURN");
+    }
 
     if(button.isReleased())
       Serial.println("The button is released");
@@ -142,6 +143,6 @@ void loop() {
       bleKeyboard.write(KEY_DOWN_ARROW);
       bleKeyboard.print("KEY_DOWN_ARROW");
     }
-  } */
+  }
 
 }
