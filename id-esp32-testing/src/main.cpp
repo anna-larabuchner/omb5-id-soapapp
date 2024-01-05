@@ -14,6 +14,7 @@
 
 
 #define LED 2
+#define BLINK_INTERVAL 1000  // interval at which to blink LED (milliseconds)
 
 #define VRX_PIN  36 // ESP32 pin GPIO36 (ADC0) connected to VRX pin
 #define VRY_PIN  39 // ESP32 pin GPIO39 (ADC0) connected to VRY pin
@@ -32,6 +33,11 @@
 int valueX = 0 ; // to store the X-axis value
 int valueY = 0 ; // to store the Y-axis value
 int command = COMMAND_NO;
+
+// Variables will change:
+int ledState = LOW;   // ledState used to set the LED
+int previousButtonState = LOW; // will store last time button was updated
+unsigned long previousMillis = 0;   // will store last time LED was updated
 
 ezButton button(17); // create ezButton object that attach to pin G17;
 
@@ -57,15 +63,31 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println("In LOOP ---------------------");
+  // Serial.println("In LOOP ---------------------");
 
   // LED Code
-  digitalWrite(LED, HIGH);
+  /* digitalWrite(LED, HIGH);
   // Serial.println("LED is on");
   delay(1000);
   digitalWrite(LED, LOW);
   // Serial.println("LED is off");
-  delay(1000);
+  delay(1000); */
+
+  // check to see if it's time to blink the LED; that is, if the difference
+  // between the current time and last time you blinked the LED is bigger than
+  // the interval at which you want to blink the LED.
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= BLINK_INTERVAL) {
+    // if the LED is off turn it on and vice-versa:
+    ledState = (ledState == LOW) ? HIGH : LOW;
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(LED, ledState);
+
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+  }
 
   Serial.println(bleKeyboard.isConnected());
   bleKeyboard.print("Hello this is test");
@@ -75,16 +97,14 @@ void loop() {
     bleKeyboard.print("---------- In if");
     button.loop(); // MUST call the loop() function first
 
-    /* Serial.println("Sending 'Hello world'...");
-    bleKeyboard.print("Hello world");
+    // Serial.println("Sending 'Hello world'...");
+    // bleKeyboard.print("Hello world");
+    // delay(1000);
 
-    delay(1000); */
+    // int btnState = button.getState();
+    // Serial.println(btnState);
 
-
-    /* int btnState = button.getState();
-    Serial.println(btnState); */
-
-    if(button.isPressed()) {
+    /* if(button.isPressed()) {
         Serial.println("Sending Enter key...");
         bleKeyboard.write(KEY_RETURN);
         bleKeyboard.print("KEY_RETURN");
@@ -142,7 +162,7 @@ void loop() {
       // TODO: add your task here
       bleKeyboard.write(KEY_DOWN_ARROW);
       bleKeyboard.print("KEY_DOWN_ARROW");
-    }
+    } */
   }
 
 }
