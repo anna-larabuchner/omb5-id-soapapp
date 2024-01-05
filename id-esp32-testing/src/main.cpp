@@ -66,10 +66,10 @@ void loop() {
   // Serial.println("In LOOP ---------------------");
 
   // LED Code
-  digitalWrite(LED, HIGH);
+  /* digitalWrite(LED, HIGH);
   // Serial.println("LED is on");
   delay(1000);
-  digitalWrite(LED, LOW);
+  digitalWrite(LED, LOW); */
   // Serial.println("LED is off");
   delay(1000);
 
