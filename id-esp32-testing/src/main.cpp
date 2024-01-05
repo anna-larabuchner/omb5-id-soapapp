@@ -66,12 +66,12 @@ void loop() {
   // Serial.println("In LOOP ---------------------");
 
   // LED Code
-  /* digitalWrite(LED, HIGH);
+  digitalWrite(LED, HIGH);
   // Serial.println("LED is on");
   delay(1000);
   digitalWrite(LED, LOW);
   // Serial.println("LED is off");
-  delay(1000); */
+  delay(1000);
 
   // check to see if it's time to blink the LED; that is, if the difference
   // between the current time and last time you blinked the LED is bigger than
