@@ -82,13 +82,13 @@ void loop() {
     if(button.isPressed()) {
         Serial.println("Sending Enter key...");
         bleKeyboard.write(KEY_RETURN);
-        bleKeyboard.print("KEY_RETURN");
+        // bleKeyboard.print("KEY_RETURN");
     }
 
     if(button.isReleased())
       Serial.println("The button is released");
 
-    /*
+    
     // read X and Y analog values
     valueX = analogRead(VRX_PIN);
     valueY = analogRead(VRY_PIN);
@@ -116,29 +116,29 @@ void loop() {
       Serial.println("COMMAND LEFT");
       // TODO: add your task here
       bleKeyboard.write(KEY_LEFT_ARROW);
-      bleKeyboard.print("KEY_LEFT_ARROW");
+      // bleKeyboard.print("KEY_LEFT_ARROW");
     }
 
     if (command & COMMAND_RIGHT) {
       Serial.println("COMMAND RIGHT");
       // TODO: add your task here
       bleKeyboard.write(KEY_RIGHT_ARROW);
-      bleKeyboard.print("KEY_RIGHT_ARROW");
+      // bleKeyboard.print("KEY_RIGHT_ARROW");
     }
 
     if (command & COMMAND_UP) {
       Serial.println("COMMAND UP");
       // TODO: add your task here
       bleKeyboard.write(KEY_UP_ARROW);
-      bleKeyboard.print("KEY_UP_ARROW");
+      // bleKeyboard.print("KEY_UP_ARROW");
     }
 
     if (command & COMMAND_DOWN) {
       Serial.println("COMMAND DOWN");
       // TODO: add your task here
       bleKeyboard.write(KEY_DOWN_ARROW);
-      bleKeyboard.print("KEY_DOWN_ARROW");
-    } */
+      // bleKeyboard.print("KEY_DOWN_ARROW");
+    } 
   }
 
 }
