@@ -65,36 +65,11 @@ void loop() {
   // put your main code here, to run repeatedly:
   // Serial.println("In LOOP ---------------------");
 
-  // LED Code
-  /* digitalWrite(LED, HIGH);
-  // Serial.println("LED is on");
-  delay(1000);
-  digitalWrite(LED, LOW); */
-  // Serial.println("LED is off");
-  delay(1000);
-
-  // check to see if it's time to blink the LED; that is, if the difference
-  // between the current time and last time you blinked the LED is bigger than
-  // the interval at which you want to blink the LED.
-/*   unsigned long currentMillis = millis();
-
-  if (currentMillis - previousMillis >= BLINK_INTERVAL) {
-    // if the LED is off turn it on and vice-versa:
-    ledState = (ledState == LOW) ? HIGH : LOW;
-
-    // set the LED with the ledState of the variable:
-    digitalWrite(LED, ledState);
-
-    // save the last time you blinked the LED
-    previousMillis = currentMillis;
-  } */
-
   Serial.println(bleKeyboard.isConnected());
-  bleKeyboard.print("Hello this is test");
 
   // JOYSTICK Code
   if(bleKeyboard.isConnected()) {
-    bleKeyboard.print("---------- In if");
+    Serial.println("---------- In if");
     button.loop(); // MUST call the loop() function first
 
     // Serial.println("Sending 'Hello world'...");
@@ -104,7 +79,7 @@ void loop() {
     // int btnState = button.getState();
     // Serial.println(btnState);
 
-    /* if(button.isPressed()) {
+    if(button.isPressed()) {
         Serial.println("Sending Enter key...");
         bleKeyboard.write(KEY_RETURN);
         bleKeyboard.print("KEY_RETURN");
@@ -113,6 +88,7 @@ void loop() {
     if(button.isReleased())
       Serial.println("The button is released");
 
+    /*
     // read X and Y analog values
     valueX = analogRead(VRX_PIN);
     valueY = analogRead(VRY_PIN);
