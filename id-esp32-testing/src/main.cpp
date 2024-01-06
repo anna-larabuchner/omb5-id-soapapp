@@ -19,10 +19,10 @@
 #define VRX_PIN  36 // ESP32 pin GPIO36 (ADC0) connected to VRX pin
 #define VRY_PIN  39 // ESP32 pin GPIO39 (ADC0) connected to VRY pin
 
-#define LEFT_THRESHOLD  1000
-#define RIGHT_THRESHOLD 3000
-#define UP_THRESHOLD    1000
-#define DOWN_THRESHOLD  3000
+#define LEFT_THRESHOLD  500
+#define RIGHT_THRESHOLD 3500
+#define UP_THRESHOLD    500
+#define DOWN_THRESHOLD  3500
 
 #define COMMAND_NO     0x00
 #define COMMAND_LEFT   0x01
@@ -69,7 +69,7 @@ void loop() {
 
   // JOYSTICK Code
   if(bleKeyboard.isConnected()) {
-    Serial.println("---------- In if");
+    // Serial.println("---------- In if");
     button.loop(); // MUST call the loop() function first
 
     // Serial.println("Sending 'Hello world'...");
