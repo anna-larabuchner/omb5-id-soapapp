@@ -55,9 +55,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  // Serial.println("In LOOP ---------------------");
-
-  // Serial.println(bleKeyboard.isConnected());
 
   // JOYSTICK Code
   if(bleKeyboard.isConnected()) {
@@ -69,10 +66,6 @@ void loop() {
         bleKeyboard.write(KEY_RETURN);
         // bleKeyboard.print("KEY_RETURN");
     }
-
-    // if(button.isReleased())
-    //  Serial.println("The button is released");
-
     
     // read X and Y analog values
     valueX = analogRead(VRX_PIN);
@@ -83,17 +76,23 @@ void loop() {
     command = COMMAND_NO;
 
     // check left/right commands
-    if (valueX <= LEFT_THRESHOLD)
+    if (valueX <= LEFT_THRESHOLD) {
       command = command | COMMAND_LEFT;
-
-    else if (valueX >= RIGHT_THRESHOLD)
+      delay(300);
+    } else if (valueX >= RIGHT_THRESHOLD) {
       command = command | COMMAND_RIGHT;
+      delay(300);
+    }
+      
 
     // check up/down commands
-    if (valueY <= UP_THRESHOLD)
+    if (valueY <= UP_THRESHOLD) {
       command = command | COMMAND_UP;
-    else if (valueY >= DOWN_THRESHOLD)
+      delay(300);
+    } else if (valueY >= DOWN_THRESHOLD) {
       command = command | COMMAND_DOWN;
+      delay(300);
+    }
 
     // NOTE: AT A TIME, THERE MAY BE NO COMMAND, ONE COMMAND OR TWO COMMANDS
 
