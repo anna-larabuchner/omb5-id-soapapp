@@ -6,23 +6,18 @@
 
 /*
  * This ESP32 code is created by esp32io.com
- *
  * This ESP32 code is released in the public domain
- *
  * For more detail (instruction and wiring diagram), visit https://esp32io.com/tutorials/esp32-joystick
  */
 
 
-#define LED 2
-#define BLINK_INTERVAL 1000  // interval at which to blink LED (milliseconds)
-
 #define VRX_PIN  36 // ESP32 pin GPIO36 (ADC0) connected to VRX pin
 #define VRY_PIN  39 // ESP32 pin GPIO39 (ADC0) connected to VRY pin
 
-#define LEFT_THRESHOLD  500
-#define RIGHT_THRESHOLD 3500
-#define UP_THRESHOLD    500
-#define DOWN_THRESHOLD  3500
+#define LEFT_THRESHOLD  0
+#define RIGHT_THRESHOLD 4095
+#define UP_THRESHOLD    0
+#define DOWN_THRESHOLD  4095
 
 #define COMMAND_NO     0x00
 #define COMMAND_LEFT   0x01
@@ -35,7 +30,6 @@ int valueY = 0 ; // to store the Y-axis value
 int command = COMMAND_NO;
 
 // Variables will change:
-int ledState = LOW;   // ledState used to set the LED
 int previousButtonState = LOW; // will store last time button was updated
 unsigned long previousMillis = 0;   // will store last time LED was updated
 
@@ -48,8 +42,6 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
 
-  // LED Code
-  pinMode(LED, OUTPUT);
 
   // JOYSTICK Code
   button.setDebounceTime(50); // set debounce time to 50 milliseconds
@@ -65,19 +57,12 @@ void loop() {
   // put your main code here, to run repeatedly:
   // Serial.println("In LOOP ---------------------");
 
-  Serial.println(bleKeyboard.isConnected());
+  // Serial.println(bleKeyboard.isConnected());
 
   // JOYSTICK Code
   if(bleKeyboard.isConnected()) {
     // Serial.println("---------- In if");
     button.loop(); // MUST call the loop() function first
-
-    // Serial.println("Sending 'Hello world'...");
-    // bleKeyboard.print("Hello world");
-    // delay(1000);
-
-    // int btnState = button.getState();
-    // Serial.println(btnState);
 
     if(button.isPressed()) {
         Serial.println("Sending Enter key...");
@@ -85,8 +70,8 @@ void loop() {
         // bleKeyboard.print("KEY_RETURN");
     }
 
-    if(button.isReleased())
-      Serial.println("The button is released");
+    // if(button.isReleased())
+    //  Serial.println("The button is released");
 
     
     // read X and Y analog values
@@ -98,15 +83,16 @@ void loop() {
     command = COMMAND_NO;
 
     // check left/right commands
-    if (valueX < LEFT_THRESHOLD)
+    if (valueX <= LEFT_THRESHOLD)
       command = command | COMMAND_LEFT;
-    else if (valueX > RIGHT_THRESHOLD)
+
+    else if (valueX >= RIGHT_THRESHOLD)
       command = command | COMMAND_RIGHT;
 
     // check up/down commands
-    if (valueY < UP_THRESHOLD)
+    if (valueY <= UP_THRESHOLD)
       command = command | COMMAND_UP;
-    else if (valueY > DOWN_THRESHOLD)
+    else if (valueY >= DOWN_THRESHOLD)
       command = command | COMMAND_DOWN;
 
     // NOTE: AT A TIME, THERE MAY BE NO COMMAND, ONE COMMAND OR TWO COMMANDS
